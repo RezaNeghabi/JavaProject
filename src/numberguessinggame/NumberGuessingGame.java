@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Gussing game using Rand function or a text file including the number.
  */
 package numberguessinggame;
 
@@ -10,23 +8,11 @@ import java.io.FileReader;
 import java.util.Random;
 import java.util.Scanner;
 
-
-/**
- *
- * Number Guessing Game with two options: First guessing a number in a file
- * and second, guessing a random number!
- */
 public class NumberGuessingGame {
-    
-    
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
-    
-    /**
-     * @param args
-     * @throws java.io.FileNotFoundException
-     */
+
     public static void main(String[] args) throws FileNotFoundException 
     {
         boolean guess = false;
@@ -47,8 +33,10 @@ public class NumberGuessingGame {
                 "andom" + " nmuber (1-100)? (F / R) ");
         String selection = console.next();
         
-        if ((selection.equals("R")) || (selection.equals("r")))
-            {     
+        switch (selection)
+        {
+            case "r":
+            case "R":
                 numberToGuess = rand.nextInt(100)+1;
                 System.out.print("Guess a number between 1 and 100: ");
                   
@@ -78,10 +66,11 @@ public class NumberGuessingGame {
                                     + (numberOfTries + 1) + " tries!");
                             numberOfTries = maxNumberOfTries;
                         }
-                }               
-            }    
-        else if ((selection.equals("F")) || (selection.equals("f")))
-            {
+                }
+                break;
+            
+            case "f":
+            case "F":
                 numberToGuess = inFile.nextInt();
                 System.out.print("Guess a number between 1 and 100: ");
                 
@@ -112,7 +101,7 @@ public class NumberGuessingGame {
                             numberOfTries = maxNumberOfTries;
                         }   
                 }
-            }
+        }
     }
 }
 
